@@ -20,7 +20,7 @@ const Navbar = () => {
     >
       <div className="flex items-center gap-8">
         <span className="text-2xl md:text-3xl font-black tracking-tight text-primary">
-          StreamX
+          CineVerse
         </span>
         <nav className="hidden md:flex items-center gap-6">
           {NAV_ITEMS.map((item) => (
