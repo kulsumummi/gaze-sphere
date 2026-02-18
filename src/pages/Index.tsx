@@ -15,7 +15,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <HeroBanner movie={heroMovie} isLoading={trending.isLoading} />
+      <HeroBanner movies={trending.data} isLoading={trending.isLoading} />
 
       <div className="-mt-24 relative z-10">
         <MovieRow title="🔥 Trending Now" movies={trending.data} isLoading={trending.isLoading} />

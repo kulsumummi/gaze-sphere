@@ -11,7 +11,7 @@ const Footer = () => (
           </button>
         ))}
       </div>
-      <p className="text-xs text-muted-foreground">© 2026 StreamX</p>
+      <p className="text-xs text-muted-foreground">© 2026 CineVerse</p>
     </div>
   </footer>
 );
