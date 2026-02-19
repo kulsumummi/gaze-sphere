@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { Search, Bell, User } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Search, Bell, User, LogOut } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const NAV_ITEMS = ["Home", "Movies", "New & Popular", "My List"];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -19,9 +22,9 @@ const Navbar = () => {
       }`}
     >
       <div className="flex items-center gap-8">
-        <span className="text-2xl md:text-3xl font-black tracking-tight text-primary">
+        <Link to="/" className="text-2xl md:text-3xl font-black tracking-tight text-primary">
           CineVerse
-        </span>
+        </Link>
         <nav className="hidden md:flex items-center gap-6">
           {NAV_ITEMS.map((item) => (
             <button
@@ -37,9 +40,23 @@ const Navbar = () => {
       <div className="flex items-center gap-5">
         <Search className="w-5 h-5 text-foreground/70 hover:text-foreground transition-colors cursor-pointer" />
         <Bell className="w-5 h-5 text-foreground/70 hover:text-foreground transition-colors cursor-pointer" />
-        <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center">
-          <User className="w-4 h-4 text-primary-foreground" />
-        </div>
+        {user ? (
+          <div className="flex items-center gap-3">
+            <Link to="/dashboard" className="w-8 h-8 rounded-md bg-primary flex items-center justify-center hover:bg-primary/85 transition-colors">
+              <User className="w-4 h-4 text-primary-foreground" />
+            </Link>
+            <button onClick={signOut} className="text-foreground/60 hover:text-foreground transition-colors">
+              <LogOut className="w-4 h-4" />
+            </button>
+          </div>
+        ) : (
+          <Link
+            to="/login"
+            className="text-sm font-semibold bg-primary text-primary-foreground px-4 py-1.5 rounded-md hover:bg-primary/85 transition-colors"
+          >
+            Sign In
+          </Link>
+        )}
       </div>
     </header>
   );
